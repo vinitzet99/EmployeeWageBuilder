@@ -1,5 +1,4 @@
 .git/
-EmployeWageBuilder.iml
 .idea/
-.out/
-
+out/
+EmployeWageBuilder.iml
