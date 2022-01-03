@@ -1,5 +1,6 @@
 package employewage;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class EmployeWageBuilder implements IEmployeeWage{
@@ -7,21 +8,22 @@ public class EmployeWageBuilder implements IEmployeeWage{
     public static final int IS_FULLTIME = 1;
     public static final int IS_PARTTIME = 2;
     private int numOfCompany = 0;
-    private CompanyInfo[] companyInfoArray;
+    private ArrayList<CompanyInfo> companyInfoArray;
 
     public EmployeWageBuilder() {
-        companyInfoArray = new CompanyInfo[6];
+        companyInfoArray = new ArrayList<CompanyInfo>(6);
     }
 
     public void addCompanyInfo(String companyName, int empRatePerHour, int noOfWorkingDays, int maxHoursPerMonth) {
-        companyInfoArray[numOfCompany] = new CompanyInfo(companyName, empRatePerHour, noOfWorkingDays, maxHoursPerMonth);
+        CompanyInfo newComp = new CompanyInfo(companyName, empRatePerHour, noOfWorkingDays, maxHoursPerMonth);
+        companyInfoArray.add(newComp);
         numOfCompany++;
     }
 
     public void computeEmpWage() {
         for (int i = 0; i < numOfCompany; i++) {
-            companyInfoArray[i].setTotalEmpWage(this.computeWage(companyInfoArray[i])); // inside bracket return totalEmpWage
-            System.out.println(companyInfoArray[i]);
+            companyInfoArray.get(i).setTotalEmpWage(this.computeWage(companyInfoArray.get(i))); // inside bracket return totalEmpWage
+            System.out.println(companyInfoArray.get(i));
         }
     }
     /*
