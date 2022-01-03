@@ -2,6 +2,7 @@ package employewage;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class EmployeWageBuilder implements IEmployeeWage{
     // Declaring a constant
@@ -9,6 +10,7 @@ public class EmployeWageBuilder implements IEmployeeWage{
     public static final int IS_PARTTIME = 2;
     private int numOfCompany = 0;
     private ArrayList<CompanyInfo> companyInfoArray;
+    private static final Scanner sc = new Scanner(System.in);
 
     public EmployeWageBuilder() {
         companyInfoArray = new ArrayList<CompanyInfo>(6);
@@ -62,8 +64,29 @@ public class EmployeWageBuilder implements IEmployeeWage{
         totalWage = totalEmpHrs * companyInfo.getEmpRatePerHour();
         return totalWage;
     }
+    public void queryCompanyWage()
+    {
+        int valueToBeFound=0;
+        while(true) {
+            System.out.println("Select from below option to get total wages by company name :\n0. to Quit ");
+            for (int i = 0; i < numOfCompany; i++) {
+                System.out.println((i + 1) + ". " + companyInfoArray.get(i).getCompanyName());
+            }
+
+            valueToBeFound = sc.nextInt();
+            if (valueToBeFound != 0 && valueToBeFound < 6) {
+                System.out.println(
+                        "Total Employee Wage for " + companyInfoArray.get(valueToBeFound - 1).getCompanyName() +
+                                " is " + companyInfoArray.get(valueToBeFound - 1).getTotalEmpWage());
+            } else {
+                System.out.println("Quit!!");
+                break;
+            }
+        }
+    }
 
     public static void main(String[] args) {
+        int value=1;
         System.out.println("Welcome To Employee Wage Computation Program");
         IEmployeeWage employeeWageBuilder = new EmployeWageBuilder();
         ((EmployeWageBuilder) employeeWageBuilder).addCompanyInfo("Infosys", 150, 2, 10);
@@ -72,5 +95,7 @@ public class EmployeWageBuilder implements IEmployeeWage{
         ((EmployeWageBuilder) employeeWageBuilder).addCompanyInfo("Jio", 180, 3, 15);
         ((EmployeWageBuilder) employeeWageBuilder).addCompanyInfo("Airtel", 160, 4, 14);
         ((EmployeWageBuilder) employeeWageBuilder).computeEmpWage();
+        ((EmployeWageBuilder) employeeWageBuilder).queryCompanyWage();
     }
+
 }
