@@ -2,7 +2,7 @@ package employewage;
 
 import java.util.Random;
 
-public class EmployeWageBuilder{
+public class EmployeWageBuilder implements IEmployeeWage{
     // Declaring a constant
     public static final int IS_FULLTIME = 1;
     public static final int IS_PARTTIME = 2;
@@ -30,6 +30,7 @@ public class EmployeWageBuilder{
     public static int computeWage(CompanyInfo companyInfo) {
 // Declaring the variables
         int empHrs = 0;
+        int empWage = 0;
         int totalEmpHrs = 0;
         int totalWorkingDays = 0;
         int totalWage = 0;
@@ -50,6 +51,7 @@ public class EmployeWageBuilder{
                 default: // Employee is absent
                     empHrs = 0;
             }
+            empWage = companyInfo.getEmpRatePerHour() * empHrs;
             totalEmpHrs += empHrs;
         }
         totalWage = totalEmpHrs * companyInfo.getEmpRatePerHour();
@@ -58,12 +60,12 @@ public class EmployeWageBuilder{
 
     public static void main(String[] args) {
         System.out.println("Welcome To Employee Wage Computation Program");
-        EmployeWageBuilder employeeWageBuilder = new EmployeWageBuilder();
-        employeeWageBuilder.addCompanyInfo("Microsoft", 4, 30, 100);
-        employeeWageBuilder.addCompanyInfo("TCS" , 200, 3, 10);
-        employeeWageBuilder.addCompanyInfo("Accenture", 100, 4, 12);
-        employeeWageBuilder.addCompanyInfo("Jio", 180, 3, 15);
-        employeeWageBuilder.addCompanyInfo("Airtel", 160, 4, 14);
-        employeeWageBuilder.computeEmpWage();
+        IEmployeeWage employeeWageBuilder = new EmployeWageBuilder();
+        ((EmployeWageBuilder) employeeWageBuilder).addCompanyInfo("Infosys", 150, 2, 10);
+        ((EmployeWageBuilder) employeeWageBuilder).addCompanyInfo("TCS" , 200, 3, 10);
+        ((EmployeWageBuilder) employeeWageBuilder).addCompanyInfo("Accenture", 100, 4, 12);
+        ((EmployeWageBuilder) employeeWageBuilder).addCompanyInfo("Jio", 180, 3, 15);
+        ((EmployeWageBuilder) employeeWageBuilder).addCompanyInfo("Airtel", 160, 4, 14);
+        ((EmployeWageBuilder) employeeWageBuilder).computeEmpWage();
     }
 }
