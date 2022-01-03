@@ -7,6 +7,7 @@ public class CompanyInfo {
     private int noOfWorkingDays;
     private int maxHoursPerMonth;
     private int totalEmpWage;
+    private String dailyWage;
 
     public CompanyInfo(String companyName, int empRatePerHour, int noOfWorkingDays, int maxHoursPerMonth) {
         this.companyName = companyName;
@@ -50,6 +51,17 @@ public class CompanyInfo {
     public void setMaxHoursPerMonth(int maxHoursPerMonth) {
         this.maxHoursPerMonth = maxHoursPerMonth;
     }
+    public int getTotalEmpWage() {
+        return totalEmpWage;
+    }
+
+    public String getDailyWage() {
+        return dailyWage;
+    }
+
+    public void setDailyWage(String dailyWage) {
+        this.dailyWage = dailyWage;
+    }
 
     @Override
     public String toString() {
@@ -58,7 +70,8 @@ public class CompanyInfo {
                 ", empRatePerHour = " + empRatePerHour +
                 ", numOfWorkingDays = " + noOfWorkingDays +
                 ", maxHrsPerMonth = " + maxHoursPerMonth +
-                ", totalWage = " + totalEmpWage;
+                ", dailyWage = " + dailyWage +
+                "), totalWage = " + totalEmpWage;
 
     }
 }
